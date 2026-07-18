@@ -35,8 +35,8 @@ def _make_fallback_surface(colour,size=64):
 
 def load_texture(block,filenames):
     surf = None
-    for fname in filenames:
-        path = os.path.join(config,ASSET_DIR,fname)
+    for f in filenames:
+        path = os.path.join(config,asset_dir,f)
         if os.path.exists(path):
             try:
                 surf = py.image.load(path)
