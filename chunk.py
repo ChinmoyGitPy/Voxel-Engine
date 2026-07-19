@@ -73,4 +73,3 @@ class Chunk:
                     if 0 <= lxx < size and 0 < lzz < size:
                         if self.blocks[lzz,ry,lzz] == air:
                             self.blocks[lzz,ry,lzz] = leaves 
- 

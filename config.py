@@ -1,6 +1,6 @@
 import os
 
-screen_width, screen_h = 1280,720
+screen_w, screen_h = 1280,720
 fov = 70
 near_plane,far_plane = 0.1, 400.0
 target_fps = 60
