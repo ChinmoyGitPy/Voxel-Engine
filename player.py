@@ -38,7 +38,7 @@ class Player:
         return (x,y,z)
     
     def eye_pos(self):
-        return self.world.get_block(bx,by,bz)==water
+        return (self.pos[0],self.pos[1] + config.player_eye,self.pos[2])
     
     def _feet_in_water(self):
         bx = int(math.floor(self.pos[0]))
