@@ -24,7 +24,7 @@ class Game:
 
         self.clock = py.time.Clock()
         renderer.setup_gl()
-        renderer.set_persepective()
+        renderer.set_perspective()
         self.textures = load_all_textures()
 
         self.world = World()
@@ -52,9 +52,26 @@ class Game:
             py.event.set_grab(self.mouse_captured)
             py.mouse.set_visible(not self.mouse_captured)
         elif event.key in _slot_keys:
-            self.player.inventory.selected_index(_slot_keys[event.key])
+            self.player.inventory.select_index(_slot_keys[event.key])
 
     def _handle_mouse_click(self,event):
+        origin = self.player.eye_pos()
+        direction = self.player.forward_vector()
+        hit, place, normal = raycast(self.world, origin, direction)
+
+        if event.button == 1 and hit:  # left click = break
+            self.world.set_block(hit[0], hit[1], hit[2], air)
+        elif event.button == 3 and place:  # right click = place
+            if not self._would_place_inside_player(place):
+                self.world.set_block(place[0], place[1], place[2], self.player.selected_block)
+
+    def _would_place_inside_player(self, place):
+        px, py_, pz = self.player.pos
+        return (place[0] - 0.5 < px < place[0] + 1.5 and
+                place[1] - config.player_height < py_ < place[1] + 1 and
+                place[2] - 0.5 < pz < place[2] + 1.5)
+
+    def _handle_mouse_look(self):
         if self.mouse_captured:
             mdx, mdy = py.mouse.get_rel()
             self.player.yaw += mdx * config.mouse_sensitivity
@@ -64,10 +81,11 @@ class Game:
             py.mouse.get_rel()
 
     def update(self,dt):
-        self._handle_mouse_click(self)
-        keys = py.key.get_pressed
+        self._handle_mouse_look()
+        keys = py.key.get_pressed()
         self.player.update(dt,keys)
         self.world.ensure_chunks_around(self.player.pos[0],self.player.pos[2])
+        self._rebuild_dirty_meshes()
 
     def _rebuild_dirty_meshes(self):
         from . meshing import upload_chunk_meshes_by_block
@@ -82,9 +100,9 @@ class Game:
     def render(self):
         glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT)
         renderer.apply_camera(self.player)
-        renderer.draw_world(self.world, self.textures, -_opaque_draw_order)
+        renderer.draw_world(self.world, self.textures, _opaque_draw_order)
         renderer.draw_crosshair()
-        renderer.draw_hotbar
+        renderer.draw_hotbar(self.player, self.textures)
         py.display.flip()
 
     def run(self):

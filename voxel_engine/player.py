@@ -27,7 +27,7 @@ class Player:
     
     @selected_slot.setter
     def selected_slot(self,index):
-        self.inventory.selected_index(index)
+        self.inventory.select_index(index)
 
     def forward_vector(self):
         yaw_r = math.radians(self.yaw)

@@ -9,7 +9,7 @@ class World:
         self.chunks = {}
 
     def world_to_chunk(self, wx,wz):
-        return wz//config.chunk_size,wz//config.chunk_size
+        return wx//config.chunk_size,wz//config.chunk_size
     
     def get_chunk(self,cx,cz,create=True):
         key = (cx,cz)
@@ -20,7 +20,7 @@ class World:
             self.chunks[key] = chunk
             
             for dx, dz in ((1,0),(-1,0),(0,1),(0,-1)):
-                nb = self.chunks.get((cx,dx,cz,dz))
+                nb = self.chunks.get((cx+dx,cz+dz))
                 if nb is not None:
                     nb.mesh_dirty = True
         return chunk
@@ -34,7 +34,7 @@ class World:
             return air
         lx = wx - cx * config.chunk_size
         lz = wz -cz * config.chunk_size
-        return int(chunk.blocks[lz,wy,lz])
+        return int(chunk.blocks[lx,wy,lz])
 
     def set_block(self,wx,wy,wz,block):
         if wy < 0 or wy >= config.world_height:
@@ -55,6 +55,7 @@ class World:
             if nb: nb.mesh_dirty = True
         if lz == 0:
             nb = self.chunks.get((cx,cz-1))
+            if nb: nb.mesh_dirty = True
         if lz == size-1:
             nb = self.chunks.get((cx,cz+1))
             if nb: nb.mesh_dirty = True

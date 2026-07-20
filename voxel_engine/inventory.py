@@ -7,11 +7,15 @@ class Inventory:
 
     @property
     def selected_block(self):
-        return block_names.get(self.selected_block)
+        return self.slots[self.selected_index]
     
     @property
     def selected_name(self):
         return block_names.get(self.selected_block,"?")
+    
+    def select_index(self,index):
+        if 0 <= index < len(self.slots):
+            self.selected_index = index
     
     def scroll(self,direction):
         n = len(self.slots)

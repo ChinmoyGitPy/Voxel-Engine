@@ -43,7 +43,7 @@ def build_chunk_meshes_by_block(world,chunk):
                 b = int(blocks[lx,ly,lz])
                 if b == air:
                     continue
-                wx,wy,wz = base_x+ly,ly,base_z +lz
+                wx,wy,wz = base_x+lx,ly,base_z +lz
                 is_water = (b == water)
 
                 for face_name, (v0,v1,v2,v3, normal) in faces.items():
@@ -71,7 +71,7 @@ def build_chunk_meshes_by_block(world,chunk):
                         ])
 
     return {
-        bid: (np.arrary(data,dtype=np.float32) if data else np.zeroes(0,dtype=np.float32))
+        bid: (np.array(data,dtype=np.float32) if data else np.zeros(0,dtype=np.float32))
         for bid,data in per_block.items()
     }                     
 
@@ -82,9 +82,8 @@ def upload_chunk_meshes_by_block(chunk,world):
         arr = arrays[bid]
         vbo = chunk.block_buffers.get(bid)
         if vbo is None:
-            vbo = glGenBuffers
-            chunk.block_buffers(1)
-            chunk.blocck_buffers[bid]
+            vbo = glGenBuffers(1)
+            chunk.block_buffers[bid] = vbo
         glBindBuffer(GL_ARRAY_BUFFER,vbo)
         if arr.size:
             glBufferData(GL_ARRAY_BUFFER,arr.nbytes,arr,GL_STATIC_DRAW)
@@ -108,7 +107,10 @@ def draw_chunk_block(chunk,block_id,texture_id):
     glVertexPointer(3,GL_FLOAT,stride,ctypes.c_void_p(0))
 
     glEnableClientState(GL_TEXTURE_COORD_ARRAY)
-    glTexCoordPointer(2,GL_FLOAT,stride,ctypes.c_void_p(5*4))
+    glTexCoordPointer(2,GL_FLOAT,stride,ctypes.c_void_p(3*4))
+
+    glEnableClientState(GL_NORMAL_ARRAY)
+    glNormalPointer(GL_FLOAT,stride,ctypes.c_void_p(5*4))
 
     glDrawArrays(GL_QUADS,0,count)
 

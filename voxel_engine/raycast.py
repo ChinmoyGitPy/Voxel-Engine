@@ -28,15 +28,15 @@ def raycast(world,origin,direction,max_dist=config.reach):
     tmax_y = t_max(y,iy,step_y,dy)
     tmax_z = t_max(z,iz,step_z,dz)
 
-    tdelta_x = t_delta(x,ix,step_x,dx)
-    tdelta_y = t_delta(y,iy,step_y,dy)
-    tdelta_z = t_delta(z,iz,step_z,dz)
+    tdelta_x = t_delta(step_x,dx)
+    tdelta_y = t_delta(step_y,dy)
+    tdelta_z = t_delta(step_z,dz)
 
     last_normal = (0,0,0)
     traveled = 0.0
 
     while traveled <= max_dist:
-        block = world.get_blocks(ix,iy,iz)
+        block = world.get_block(ix,iy,iz)
         if block != air:
             hit = (ix,iy,iz)
             place = (ix-last_normal[0],iy-last_normal[1],iz-last_normal[2])
@@ -45,7 +45,7 @@ def raycast(world,origin,direction,max_dist=config.reach):
         if tmax_x < tmax_y and tmax_x < tmax_z:
             ix += step_x
             traveled = tmax_x
-            tmax_x = tdelta_x
+            tmax_x += tdelta_x
             last_normal = (-step_x,0,0)
         elif tmax_y < tmax_z:
             iy += step_y
@@ -56,6 +56,6 @@ def raycast(world,origin,direction,max_dist=config.reach):
             iz += step_z
             traveled = tmax_z
             tmax_z += tdelta_z
-            last_normal = (0,0 -step_z)
+            last_normal = (0,0,-step_z)
 
     return None,None,None

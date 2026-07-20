@@ -26,7 +26,7 @@ def setup_gl():
     glColor4f(1, 1, 1, 1)
     glMaterialfv(GL_FRONT, GL_AMBIENT_AND_DIFFUSE, (1, 1, 1, 1))
 
-def set_persepective():
+def set_perspective():
     glMatrixMode(GL_PROJECTION)
     glLoadIdentity()
     gluPerspective(config.fov, config.screen_w/config.screen_h,config.near_plane,config.far_plane,)
@@ -53,6 +53,8 @@ def _end_2d_overlay():
     glEnable(GL_DEPTH_TEST)
     glEnable(GL_LIGHTING)
     glColor3f(1,1,1)
+    glPopMatrix()
+    glMatrixMode(GL_PROJECTION)
     glPopMatrix()
     glMatrixMode(GL_MODELVIEW)
 

@@ -69,7 +69,7 @@ class Chunk:
                         continue
                     if abs(dx) == radius and abs(dz) == radius and radius == 2:
                         continue
-                    lxx, lzz, = lz + dx, lz + dz
-                    if 0 <= lxx < size and 0 < lzz < size:
-                        if self.blocks[lzz,ry,lzz] == air:
-                            self.blocks[lzz,ry,lzz] = leaves 
+                    lxx, lzz = lx + dx, lz + dz
+                    if 0 <= lxx < size and 0 <= lzz < size:
+                        if self.blocks[lxx,ry,lzz] == air:
+                            self.blocks[lxx,ry,lzz] = leaves 
