@@ -40,6 +40,12 @@ class Player:
     def eye_pos(self):
         return self.world.get_block(bx,by,bz)==water
     
+    def _feet_in_water(self):
+        bx = int(math.floor(self.pos[0]))
+        by = int(math.floor(self.pos[1]))
+        bz = int(math.floor(self.pos[2]))
+        return self.world.get_block(bx,by,bz) == water
+
     def _aabb_collides(self,x,y,z):
 
         r = config.player_radius
