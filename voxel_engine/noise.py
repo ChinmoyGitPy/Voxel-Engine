@@ -51,7 +51,7 @@ class PerlinNoise2D:
         max_amp = 0.0
         for _ in range(octaves):
             total += self.noise(x*frequency/scale,y*frequency/scale)*amplitude
-            max += amplitude
+            max_amp += amplitude
             amplitude *= persistence
             frequency *= lacunarity
         return total/max_amp if max_amp > 0 else 0.0

@@ -21,11 +21,22 @@ class World:
             
             for dx, dz in ((1,0),(-1,0),(0,1),(0,-1)):
                 nb = self.chunks.get((cx,dx,cz,dz))
-                if nb is None:
+                if nb is not None:
                     nb.mesh_dirty = True
         return chunk
     
-    def get_block(self,wx,wy,wz,block):
+    def get_block(self,wx,wy,wz):
+        if wy < 0 or wy >= config.world_height:
+            return air
+        cx,cz = self.world_to_chunk(wx,wz)
+        chunk = self.chunks.get((cx,cz))
+        if chunk is None:
+            return air
+        lx = wx - cx * config.chunk_size
+        lz = wz -cz * config.chunk_size
+        return int(chunk.blocks[lz,wy,lz])
+
+    def set_block(self,wx,wy,wz,block):
         if wy < 0 or wy >= config.world_height:
             return
         cx, cz = self.world_to_chunk(wx,wz)

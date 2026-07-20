@@ -30,7 +30,7 @@ class Game:
         self.world = World()
         spawn_x, spawn_z = 0.5,0.5
         self.world.ensure_chunks_around(spawn_x,spawn_z)
-        self.player = Player(self.wordl,spawn_x,spawn_z)
+        self.player = Player(self.world,spawn_x,spawn_z)
 
         self.mouse_captured = True
         self.running = True
@@ -58,7 +58,7 @@ class Game:
         if self.mouse_captured:
             mdx, mdy = py.mouse.get_rel()
             self.player.yaw += mdx * config.mouse_sensitivity
-            self.player.ptich -= mdy * config.mouse_sensitivity
+            self.player.pitch -= mdy * config.mouse_sensitivity
             self.player.pitch = max(-config.max_pitch, min(config.max_pitch, self.player.pitch))
         else:
             py.mouse.get_rel()

@@ -12,7 +12,7 @@ class Player:
         self.pos = [x,max(h+3,config.sea_level + 3),z]
         self.vel = [0.0,0.0,0.0]
         self.yaw = 0.0
-        self.ptich = 0.0
+        self.pitch = 0.0
         self.on_ground = False
         self.in_water = False
         self.inventory = Inventory()

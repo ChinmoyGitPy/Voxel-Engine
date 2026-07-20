@@ -15,7 +15,7 @@ def setup_gl():
     glFogf(GL_FOG_START, config.fog_start_chunks * config.chunk_size)
     glFogf(GL_FOG_END, config.fog_end_chunks * config.chunk_size)
 
-    glClearColor(*config.SKY_COLOR)
+    glClearColor(*config.sky_colour)
 
     glEnable(GL_LIGHTING)
     glEnable(GL_LIGHT0)
