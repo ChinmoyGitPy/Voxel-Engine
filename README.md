@@ -1,5 +1,22 @@
 # Voxel Engine
 
+<img width="1277" height="747" alt="image" src="https://github.com/user-attachments/assets/6fc144b9-6312-4666-a5db-1961ca4a24b0" />
+
+# Actions:
+
+Movement -> WASD
+
+Jump -> Space
+
+L Shift -> Submerge (not applicable currently)
+
+Left Click -> Break
+
+Right Click -> Place (Buggy)
+
+Scroll -> Change block 
+
+
 For those who want a one liner -> I made a Minecraft copy.
 
 Ok so, if I have your attention now, let's begin..
