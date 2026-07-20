@@ -1,2 +1,4 @@
-# Voxel-Engine
-A voxel engine made using perlin-noise to generate procedurally. 
+#Voxel Engine
+
+**We all have played minecraft, haven't we?** If not, perhaps we have none the less seen or heard about it. It is a video game where we are able to witness the magic of procedural generation. Now how exactly does minecraft keeps on generating new chunks everytime a person renders it? This question kept knocking at my door, until I decided to make a voxel engine myself. Voxels are cubes represented by x,y and z coordinates in a 3 dimensional plane. Minecraft is made up of these voxels and the engine that generates these voxels is made using the heart of my project *the perlin noise algorithm*. This algorithm makes chaos look beatifull by adding patterns to it. We set the frequencies and then this algorithm makes modern procedural generation possible. Let's dive deeper into what perlin noise actually is! 
+
