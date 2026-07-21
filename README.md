@@ -31,7 +31,7 @@ For those who want a one liner -> I made a Minecraft copy.
 
 Ok so, if I have your attention now, let's begin..
 
-### Featuring the endless theme for the ysws program **Alchemize**
+### Featuring the endless theme for the ysws program **Alchemize** ->
 
 I started out this project for shipping in the season 1 of Alchemise, the ysws from Hackclub. Since my project fits well in the endless theme - that is it's endless terrain generation, it was a fantastic opportunity for me to take part in the program. 
 
