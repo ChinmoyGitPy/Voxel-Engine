@@ -27,10 +27,13 @@ Scroll -> Change block
 
 <img width="1270" height="670" alt="Screenshot 2026-07-21 020626" src="https://github.com/user-attachments/assets/fd676f57-21f1-4699-8d03-f047e0fc7ebb" />
 
-
 For those who want a one liner -> I made a Minecraft copy.
 
 Ok so, if I have your attention now, let's begin..
+
+### Featuring the endless theme for the ysws program **Alchemize**
+
+I started out this project for shipping in the season 1 of Alchemise, the ysws from Hackclub. Since my project fits well in the endless theme - that is it's endless terrain generation, it was a fantastic opportunity for me to take part in the program. 
 
 **We all have played minecraft, haven't we?** If not, perhaps we have none the less seen or heard about it. It is a video game where we are able to witness the magic of procedural generation. Now how exactly does minecraft keeps on generating new chunks everytime a person renders it? This question kept knocking at my door, until I decided to make a voxel engine myself. Voxels are cubes represented by x,y and z coordinates in a 3 dimensional plane. Minecraft is made up of these voxels and the engine that generates these voxels is made using the heart of my project *the perlin noise algorithm*. This algorithm makes chaos look beatifull by adding patterns to it. We set the frequencies and then this algorithm makes modern procedural generation possible. Let's dive deeper into what perlin noise actually is! 
 
