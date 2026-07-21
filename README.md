@@ -15,7 +15,18 @@ Right Click -> Place (Buggy)
 
 Scroll -> Change block 
 
+# Stack:
+
+- Python 3.12
+- OpenGL library
+- Numpy library
+- Pygame library
+- Built-ins
+
 # Voxel Engine
+
+<img width="1270" height="670" alt="Screenshot 2026-07-21 020626" src="https://github.com/user-attachments/assets/fd676f57-21f1-4699-8d03-f047e0fc7ebb" />
+
 
 For those who want a one liner -> I made a Minecraft copy.
 
